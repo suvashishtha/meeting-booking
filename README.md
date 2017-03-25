@@ -1,5 +1,4 @@
 # meeting-booking
-Meeting Booking Application
 
 Meeting Booking Application
 
