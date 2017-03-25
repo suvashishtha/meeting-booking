@@ -24,8 +24,8 @@ import java.util.TreeMap;
  * </pre>
  * public class Handler
  * {
- * 	final MeetingRequestController controller = new MeetingRequestController(ConfigReader);
- * 	controller.process();
+ * final MeetingRequestController controller = new MeetingRequestController(ConfigReader);
+ * controller.process();
  * }
  */
 public class MeetingRequestController {
@@ -62,6 +62,7 @@ public class MeetingRequestController {
     /**
      * Method for Getting Office Timings from the Input data read from text file.
      * Method reads the first record in the list & returns the OfficeTimingsBean object
+     *
      * @param inputRecordsList - List of All the records read from file
      * @return Bean Object containing office timings
      */
@@ -79,6 +80,7 @@ public class MeetingRequestController {
 
     /**
      * Method to format the confirmed meeting requests in chronological order
+     *
      * @param confirmedMeetingList Confirmed Meeting Requests
      * @return Map containing meeting request sorted & grouped on meeting start date.
      */
@@ -103,6 +105,7 @@ public class MeetingRequestController {
 
     /**
      * Method to display the final output to the console.
+     *
      * @param resultMap Map containing the confirmed meeting requests chrnologically sorted & grouped on meeting start date
      */
     private void displayCalendar(final Map<Long, List<MeetingRequestBean>> resultMap) {

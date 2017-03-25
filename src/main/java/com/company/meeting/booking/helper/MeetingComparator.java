@@ -15,8 +15,8 @@ import java.util.Comparator;
  * </pre>
  * public class Handler
  * {
- * 	final RequestSubmissionTimeComparator comparator = new MeetingComparator.RequestSubmissionTimeComparator();
- * 	Collections.sort(List<MeetingRequestBean>, comparator);
+ * final RequestSubmissionTimeComparator comparator = new MeetingComparator.RequestSubmissionTimeComparator();
+ * Collections.sort(List<MeetingRequestBean>, comparator);
  * }
  */
 public class MeetingComparator {

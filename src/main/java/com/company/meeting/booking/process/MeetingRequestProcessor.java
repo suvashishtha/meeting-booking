@@ -29,7 +29,7 @@ import java.util.List;
  * </pre>
  * public class Handler
  * {
- * 	final MeetingRequestProcessor processor = new MeetingRequestProcessor(ConfigReader);
+ * final MeetingRequestProcessor processor = new MeetingRequestProcessor(ConfigReader);
  * }
  */
 public class MeetingRequestProcessor {
@@ -60,6 +60,7 @@ public class MeetingRequestProcessor {
 
     /**
      * Method to get the meetingRequestBean objects from the String records list.
+     *
      * @param inputRecordsList - All meeting requests as List<String>
      * @return - List of MeetingRequests Object as List<MeetingRequestBean>
      * @throws IOException
@@ -88,8 +89,9 @@ public class MeetingRequestProcessor {
     /**
      * Method to filter the invalid meetings based on office timings.
      * All the meetings lying before/after office hours are considered as invalid meetings.
+     *
      * @param meetingRequestList - List of MeetingRequests Object as List<MeetingRequestBean>
-     * @param officeTimingsBean - OfficeTimings as Bean Object
+     * @param officeTimingsBean  - OfficeTimings as Bean Object
      * @return - List of Valid MeetingRequests Object as List<MeetingRequestBean>
      */
     public List<MeetingRequestBean> filterInvalidMeetings(final List<MeetingRequestBean> meetingRequestList, final OfficeTimingsBean officeTimingsBean) {
@@ -109,6 +111,7 @@ public class MeetingRequestProcessor {
     /**
      * Method to process the booking requests. Method determines the meeting conflicts
      * & resolves them based on priority on Request Submission time.
+     *
      * @param meetingRequestList - List of Valid MeetingRequests Object as List<MeetingRequestBean>
      * @return - - List of Confirmed MeetingRequests Object as List<MeetingRequestBean>
      */
@@ -128,7 +131,8 @@ public class MeetingRequestProcessor {
 
     /**
      * Method to compare the Meeting Requests against office timings.
-     * @param bean - Meeting Request as a Bean Object
+     *
+     * @param bean              - Meeting Request as a Bean Object
      * @param officeTimingsBean - Office Timings as Bean Object
      * @return - validation status of meeting(true/false)
      */

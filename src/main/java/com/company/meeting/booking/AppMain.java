@@ -17,6 +17,7 @@ public class AppMain {
 
     /**
      * Method for entry point to application
+     *
      * @param args Command line arguments
      */
     public static void main(String[] args) {
@@ -37,6 +38,7 @@ public class AppMain {
 
     /**
      * Method for validation of command line arguments.
+     *
      * @param args - Command line arguments
      * @return arguments validation status(true/false)
      */

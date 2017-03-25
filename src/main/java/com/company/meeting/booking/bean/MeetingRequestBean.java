@@ -10,7 +10,7 @@ import org.joda.time.DateTime;
  * </pre>
  * public class Handler
  * {
- * 	final MeetingRequestBean bean = new MeetingRequestBean(String, long, long, long);
+ * final MeetingRequestBean bean = new MeetingRequestBean(String, long, long, long);
  * }
  */
 public class MeetingRequestBean {

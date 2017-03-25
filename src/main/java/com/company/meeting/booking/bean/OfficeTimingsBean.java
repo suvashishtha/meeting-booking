@@ -8,7 +8,7 @@ package com.company.meeting.booking.bean;
  * </pre>
  * public class Handler
  * {
- * 	final OfficeTimingsBean bean = new OfficeTimingsBean(long, long);
+ * final OfficeTimingsBean bean = new OfficeTimingsBean(long, long);
  * }
  */
 public class OfficeTimingsBean {
