@@ -1,9 +1,17 @@
-package com.marketlogic.meeting.booking.bean;
+package com.company.meeting.booking.bean;
 
 import org.joda.time.DateTime;
 
 /**
- * Created by suvashishtha on 3/24/2017.
+ * {@link MeetingRequestBean} is a Java Bean Class for Holding Meeting Requests
+ * <h3>Typical Usage Pattern;</h3>
+ * <pre>
+ * import com.company.meeting.booking.bean.MeetingRequestBean
+ * </pre>
+ * public class Handler
+ * {
+ * final MeetingRequestBean bean = new MeetingRequestBean(String, long, long, long);
+ * }
  */
 public class MeetingRequestBean {
 
@@ -37,6 +45,7 @@ public class MeetingRequestBean {
 
     @Override
     public int hashCode() {
+        //All meetings for same day should have the same hashcode. The meeting will be compared for overlapping in equals()
         return new DateTime(meetingStartTime).withTimeAtStartOfDay().hashCode();
     }
 
@@ -45,6 +54,7 @@ public class MeetingRequestBean {
         if (!(object instanceof MeetingRequestBean))
             return false;
         final MeetingRequestBean bean = (MeetingRequestBean) object;
+        //All meetings which have a overlap are considered as equals so that overlap can be determined by comparing objects
         if (bean.getMeetingStartTime() > this.getMeetingStartTime() || bean.getMeetingEndTime() < this.getMeetingEndTime())
             return false;
         else
