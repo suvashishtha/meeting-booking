@@ -1,7 +1,12 @@
 package com.company.meeting.booking.util;
 
 /**
- * Created by suvashishtha on 3/24/2017.
+ * {@link Constants} is a interface for holding application constants
+ * The class also helps to avoid magic string implementations in the code
+ * <h3>Typical Usage Pattern;</h3>
+ * <pre>
+ * import com.company.meeting.booking.util.Constants
+ * </pre>
  */
 public interface Constants {
 

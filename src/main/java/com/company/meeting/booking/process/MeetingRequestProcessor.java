@@ -3,6 +3,7 @@ package com.company.meeting.booking.process;
 import com.company.meeting.booking.bean.MeetingRequestBean;
 import com.company.meeting.booking.bean.OfficeTimingsBean;
 import com.company.meeting.booking.config.ConfigReader;
+import com.company.meeting.booking.helper.MeetingComparator;
 import com.company.meeting.booking.util.Constants;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
@@ -10,14 +11,26 @@ import org.joda.time.DateTimeComparator;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
- * Created by suvashishtha on 3/24/2017.
+ * {@link MeetingRequestProcessor} class contains methods for processing meeting booking requests.
+ * The class contains methods for business functionalities such as reading meeting data, filter them
+ * out based on the requirements(office hour timings etc.)
+ * <h3>Typical Usage Pattern;</h3>
+ * <pre>
+ * import com.company.meeting.booking.process.MeetingRequestProcessor
+ * </pre>
+ * public class Handler
+ * {
+ * 	final MeetingRequestProcessor processor = new MeetingRequestProcessor(ConfigReader);
+ * }
  */
 public class MeetingRequestProcessor {
 
@@ -29,8 +42,26 @@ public class MeetingRequestProcessor {
     }
 
     /**
-     * @param inputRecordsList
-     * @return
+     * Method to read the input file containing meeting requests and office timings.
+     *
+     * @param path - Path of file on local file system
+     * @return - All the records present in the file as List<String>
+     * @throws IOException
+     */
+    public List<String> readMeetingRequests(final String path) throws IOException {
+        final List<String> inputRecordsList = new ArrayList<>();
+        final BufferedReader br = Files.newBufferedReader(Paths.get(path));
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            inputRecordsList.add(line);
+        }
+        return inputRecordsList;
+    }
+
+    /**
+     * Method to get the meetingRequestBean objects from the String records list.
+     * @param inputRecordsList - All meeting requests as List<String>
+     * @return - List of MeetingRequests Object as List<MeetingRequestBean>
      * @throws IOException
      */
     public List<MeetingRequestBean> getMeetingRequests(final List<String> inputRecordsList) {
@@ -55,9 +86,11 @@ public class MeetingRequestProcessor {
     }
 
     /**
-     * @param meetingRequestList
-     * @param officeTimingsBean
-     * @return
+     * Method to filter the invalid meetings based on office timings.
+     * All the meetings lying before/after office hours are considered as invalid meetings.
+     * @param meetingRequestList - List of MeetingRequests Object as List<MeetingRequestBean>
+     * @param officeTimingsBean - OfficeTimings as Bean Object
+     * @return - List of Valid MeetingRequests Object as List<MeetingRequestBean>
      */
     public List<MeetingRequestBean> filterInvalidMeetings(final List<MeetingRequestBean> meetingRequestList, final OfficeTimingsBean officeTimingsBean) {
         final List<MeetingRequestBean> meetingReqList = new ArrayList<>();
@@ -74,8 +107,10 @@ public class MeetingRequestProcessor {
     }
 
     /**
-     * @param meetingRequestList
-     * @return
+     * Method to process the booking requests. Method determines the meeting conflicts
+     * & resolves them based on priority on Request Submission time.
+     * @param meetingRequestList - List of Valid MeetingRequests Object as List<MeetingRequestBean>
+     * @return - - List of Confirmed MeetingRequests Object as List<MeetingRequestBean>
      */
     public List<MeetingRequestBean> processBookingRequests(final List<MeetingRequestBean> meetingRequestList) {
         final List<MeetingRequestBean> meetingConfirmedList = new ArrayList<>();
@@ -83,6 +118,7 @@ public class MeetingRequestProcessor {
             logger.info("Received Null Argument method getMeetingRequest. Returning Empty List");
             return meetingConfirmedList;
         }
+        Collections.sort(meetingRequestList, new MeetingComparator.RequestSubmissionTimeComparator());
         for (MeetingRequestBean bean : meetingRequestList) {
             if (!meetingConfirmedList.contains(bean))
                 meetingConfirmedList.add(bean);
@@ -91,32 +127,10 @@ public class MeetingRequestProcessor {
     }
 
     /**
-     * @param confirmedMeetingList
-     * @return
-     */
-    public Map<Long, List<MeetingRequestBean>> formatOutput(final List<MeetingRequestBean> confirmedMeetingList) {
-        final Map<Long, List<MeetingRequestBean>> outputMap = new TreeMap<>();
-        if (null == confirmedMeetingList) {
-            logger.info("Received Null Argument method getMeetingRequest. Returning Empty Map");
-            return outputMap;
-        }
-        for (MeetingRequestBean bean : confirmedMeetingList) {
-            final long meetingDate = new DateTime(bean.getMeetingStartTime()).withTimeAtStartOfDay().getMillis();
-            if (!outputMap.containsKey(meetingDate)) {
-                final List<MeetingRequestBean> meetingList = new ArrayList<>();
-                meetingList.add(bean);
-                outputMap.put(meetingDate, meetingList);
-            } else {
-                outputMap.get(meetingDate).add(bean);
-            }
-        }
-        return outputMap;
-    }
-
-    /**
-     * @param bean
-     * @param officeTimingsBean
-     * @return
+     * Method to compare the Meeting Requests against office timings.
+     * @param bean - Meeting Request as a Bean Object
+     * @param officeTimingsBean - Office Timings as Bean Object
+     * @return - validation status of meeting(true/false)
      */
     private boolean compareMeetings(final MeetingRequestBean bean, final OfficeTimingsBean officeTimingsBean) {
         final DateTimeComparator comparator = DateTimeComparator.getTimeOnlyInstance();

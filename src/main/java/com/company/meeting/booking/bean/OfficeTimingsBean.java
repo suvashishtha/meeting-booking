@@ -1,7 +1,15 @@
 package com.company.meeting.booking.bean;
 
 /**
- * Created by suvashishtha on 3/24/2017.
+ * {@link OfficeTimingsBean} is a Java Bean Class for Holding Office Timings
+ * <h3>Typical Usage Pattern;</h3>
+ * <pre>
+ * import com.company.meeting.booking.bean.OfficeTimingsBean
+ * </pre>
+ * public class Handler
+ * {
+ * 	final OfficeTimingsBean bean = new OfficeTimingsBean(long, long);
+ * }
  */
 public class OfficeTimingsBean {
 
@@ -19,5 +27,10 @@ public class OfficeTimingsBean {
 
     public long getEndTime() {
         return endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Office Start Time: " + startTime + " " + "Office End Time: " + endTime;
     }
 }

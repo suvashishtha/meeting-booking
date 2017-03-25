@@ -5,12 +5,23 @@ import com.company.meeting.booking.bean.MeetingRequestBean;
 import java.util.Comparator;
 
 /**
- * Created by suvashishtha on 3/24/2017.
+ * {@link MeetingComparator} contains inner classes for comparator implementations
+ * to compare Meeting Requests based on different parameters. Current implementation
+ * compares the requests based on request submission time. This can be extended to compare
+ * meeting requests based on other parameters
+ * <h3>Typical Usage Pattern;</h3>
+ * <pre>
+ * import com.company.meeting.booking.helper.MeetingComparator
+ * </pre>
+ * public class Handler
+ * {
+ * 	final RequestSubmissionTimeComparator comparator = new MeetingComparator.RequestSubmissionTimeComparator();
+ * 	Collections.sort(List<MeetingRequestBean>, comparator);
+ * }
  */
 public class MeetingComparator {
 
     public static class RequestSubmissionTimeComparator implements Comparator<MeetingRequestBean> {
-
         @Override
         public int compare(MeetingRequestBean meetingRequestBean1, MeetingRequestBean meetingRequestBean2) {
             if (meetingRequestBean1.getRequestSubmissionTime() > meetingRequestBean2.getRequestSubmissionTime())
@@ -19,4 +30,5 @@ public class MeetingComparator {
                 return -1;
         }
     }
+    //TODO: Implementation of comparators to compare using other parameters
 }

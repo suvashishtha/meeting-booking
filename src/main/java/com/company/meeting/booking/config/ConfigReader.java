@@ -7,8 +7,16 @@ import java.io.File;
 import java.io.FileReader;
 
 /**
- * {@link ConfigReader} is responsible for instantiating Meeting Booking Program.
- * AppMain instantiates {@link ConfigReader}, {@link PropertiesConfiguration} for further processing.
+ * {@link ConfigReader} is responsible for loading application properties file
+ * {@link ConfigReader} uses {@link PropertiesConfiguration} for loading properties file.
+ *  <h3>Typical Usage Pattern;</h3>
+ * <pre>
+ * import com.company.meeting.booking.config.ConfigReader
+ * </pre>
+ * public class Handler
+ * {
+ * 	final ConfigReader config = ConfigReader.getInstance();
+ * 	config.readConfig(String);
  */
 public class ConfigReader {
 

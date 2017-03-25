@@ -16,7 +16,8 @@ public class AppMain {
     private static final Logger logger = Logger.getLogger(AppMain.class);
 
     /**
-     * @param args
+     * Method for entry point to application
+     * @param args Command line arguments
      */
     public static void main(String[] args) {
         try {
@@ -29,15 +30,15 @@ public class AppMain {
             config.readConfig(args[0]);
             final MeetingRequestController controller = new MeetingRequestController(config);
             controller.process();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Exception in Method main() " + e.getMessage(), e);
         }
     }
 
     /**
-     * @param args
-     * @return
+     * Method for validation of command line arguments.
+     * @param args - Command line arguments
+     * @return arguments validation status(true/false)
      */
     private static boolean validateArgs(String[] args) {
         if (args.length < 1) {
