@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.marketlogic.test</groupId>
+    <groupId>com.company.test</groupId>
     <artifactId>meeting-booking</artifactId>
     <version>1.0</version>
 
