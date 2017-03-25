@@ -10,5 +10,4 @@ mvn clean install
 # Usage
 
 Run the program from IDE/Command line by providing the application properties file as a argument to program.
-AppMain <Path to Application Properties File>
 Example: AppMain src/main/resources/config.properties
