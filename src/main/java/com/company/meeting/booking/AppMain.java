@@ -1,7 +1,7 @@
-package com.marketlogic.meeting.booking;
+package com.company.meeting.booking;
 
-import com.marketlogic.meeting.booking.config.ConfigReader;
-import com.marketlogic.meeting.booking.process.MeetingRequestController;
+import com.company.meeting.booking.config.ConfigReader;
+import com.company.meeting.booking.process.MeetingRequestController;
 import org.apache.log4j.Logger;
 
 import java.nio.file.Files;

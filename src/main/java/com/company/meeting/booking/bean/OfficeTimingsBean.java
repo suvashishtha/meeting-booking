@@ -1,4 +1,4 @@
-package com.marketlogic.meeting.booking.bean;
+package com.company.meeting.booking.bean;
 
 /**
  * Created by suvashishtha on 3/24/2017.

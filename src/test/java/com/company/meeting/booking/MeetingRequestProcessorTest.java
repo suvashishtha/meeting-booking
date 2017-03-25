@@ -1,4 +1,4 @@
-package com.marketlogic.meeting.booking;
+package com.company.meeting.booking;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.marketlogic.meeting.booking.config;
+package com.company.meeting.booking.config;
 
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.log4j.Logger;

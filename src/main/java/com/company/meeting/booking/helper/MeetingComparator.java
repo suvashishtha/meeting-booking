@@ -1,6 +1,6 @@
-package com.marketlogic.meeting.booking.helper;
+package com.company.meeting.booking.helper;
 
-import com.marketlogic.meeting.booking.bean.MeetingRequestBean;
+import com.company.meeting.booking.bean.MeetingRequestBean;
 
 import java.util.Comparator;
 

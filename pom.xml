@@ -36,11 +36,11 @@
             </activation>
         </profile>
         <profile>
-            <id>market-logic</id>
+            <id>custom</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
-            <!--TODO Include Market Logic Software  Artifactory-->
+            <!--TODO Include Software Artifactory-->
         </profile>
     </profiles>
 

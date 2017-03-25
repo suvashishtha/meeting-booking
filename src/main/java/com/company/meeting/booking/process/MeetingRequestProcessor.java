@@ -1,9 +1,9 @@
-package com.marketlogic.meeting.booking.process;
+package com.company.meeting.booking.process;
 
-import com.marketlogic.meeting.booking.bean.MeetingRequestBean;
-import com.marketlogic.meeting.booking.bean.OfficeTimingsBean;
-import com.marketlogic.meeting.booking.config.ConfigReader;
-import com.marketlogic.meeting.booking.util.Constants;
+import com.company.meeting.booking.bean.MeetingRequestBean;
+import com.company.meeting.booking.bean.OfficeTimingsBean;
+import com.company.meeting.booking.config.ConfigReader;
+import com.company.meeting.booking.util.Constants;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeComparator;

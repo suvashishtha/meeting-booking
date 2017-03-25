@@ -1,4 +1,4 @@
-package com.marketlogic.meeting.booking.bean;
+package com.company.meeting.booking.bean;
 
 import org.joda.time.DateTime;
 
